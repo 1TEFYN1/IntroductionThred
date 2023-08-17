@@ -10,53 +10,67 @@ namespace IntroductionThred
     class RaceTrack
     {
         private static List<Car> _cars;
+        private static bool[] _occupatedPositions;
         private int _trackLength;
         private int _carCount;
-        private static bool[] _occupatedPosition;
+
         public RaceTrack(int carCount, int trackLength)
         {
             this._carCount = carCount;
             this._trackLength = trackLength;
-            _occupatedPosition = new bool[_trackLength];
-            _cars = new List<Car>();
-            for(int i = 0; i < _carCount; i++)
-            {
-                _cars.Add(new Car(Speed: 1));
-            }
+            init();
         }
 
         public void StartRace()
         {
-            Thread thread;
             for(int i = 0; i < _carCount; i++)
             {
-                    int index = i;
-                    thread = new(() => _cars[index].Move(_trackLength));
-                    thread.Start();                               
+                StartCarByIndex(i);
             }
-            
         }
-        public static void DisplayRaceState()
+
+        public void DisplayRaceState()
         {
-            
             for (int i = 0; i < _cars.Count; i++)
             {
                 Console.WriteLine($"Car {i + 1}: Position {_cars[i].CurrentPosition}");
-                
             }
         }
-        public static bool IsOccupatingPosition(int position)
+
+        public bool IsOccupatingPosition(int position)
         {
-            return _occupatedPosition[position];
+            return _occupatedPositions[position];
         }
-        public static void OccupyPosition(int position)
+
+        public void OccupyPosition(int position)
         {
-            _occupatedPosition[position] = true;
+            _occupatedPositions[position] = true;
         }
-        public static void ReleasePosition(int position)
+
+        public void ReleasePosition(int position)
         {
-            _occupatedPosition[position] = false;
+            _occupatedPositions[position] = false;
+        }
+
+        private void init()
+        {
+            _occupatedPositions = new bool[_trackLength];
+            _cars = new List<Car>();
+            fillCarList();
+        }
+
+        private void fillCarList()
+        {
+            for(int i = 0; i < _carCount; i++)
+            {
+                _cars.Add(new Car(Speed: 1, RaceTrack: this));
+            }
+        }
+
+        private void StartCarByIndex(int index)
+        {
+            Thread car = new(() => _cars[index].Move(_trackLength));
+            car.Start();
         }
     }
-
 }

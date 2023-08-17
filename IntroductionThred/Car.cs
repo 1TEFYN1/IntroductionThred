@@ -8,27 +8,40 @@ namespace IntroductionThred
 {
     class Car
     {
-        public int CurrentPosition { get; set; }
-        public int Speed { get; set; }
+        private int CurrentPosition { get; set; }
+        private int Speed { get; set; }
+        private RaceTrack RaceTrack { get; set; }
+
         private object locker = new();
-        public Car(int Speed)
+
+        public Car(int Speed, RaceTrack RaceTrack)
         {
             this.Speed = Speed;
+            this.RaceTrack = RaceTrack;
         }
+
         public void Move(int trackLength)
         {
             while (CurrentPosition < trackLength)
             {
-                if (!RaceTrack.IsOccupatingPosition(CurrentPosition))
-                {
-                    RaceTrack.OccupyPosition(CurrentPosition);
-                    CurrentPosition += Speed;                    
-                    RaceTrack.ReleasePosition(CurrentPosition - Speed);                   
-                    RaceTrack.DisplayRaceState();
-                    
-
-                }
+                TryToOccupyNextPossiton();
+                RaceTrack.DisplayRaceState();
             }
+        }
+
+        private void TryToOccupyNextPossiton()
+        {
+            if (!RaceTrack.IsOccupatingPosition(CurrentPosition))
+            {
+                OccupyNextPossiton();
+            }
+        }
+
+        private void OccupyNextPossiton()
+        {
+            RaceTrack.OccupyPosition(CurrentPosition);
+            CurrentPosition += Speed;
+            RaceTrack.ReleasePosition(CurrentPosition - Speed);
         }
     }
 }

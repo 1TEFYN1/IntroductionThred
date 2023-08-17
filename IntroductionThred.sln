@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionThred", "IntroductionThred\IntroductionThred.csproj", "{0F5CC15D-0470-4179-82B6-B64AF8AD2DD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F5CC15D-0470-4179-82B6-B64AF8AD2DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F5CC15D-0470-4179-82B6-B64AF8AD2DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F5CC15D-0470-4179-82B6-B64AF8AD2DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F5CC15D-0470-4179-82B6-B64AF8AD2DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86EF3678-4C58-488D-8EBD-C220F174C695}
+	EndGlobalSection
+EndGlobal
